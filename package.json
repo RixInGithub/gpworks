@@ -1,0 +1,11 @@
+{
+	"name": "gpworks",
+	"version": "1.0.0",
+	"main": "hosting.js",
+	"license": "SEE LICENSE IN LICENSE.txt",
+	"dependencies": {
+		"express": "^4.21.0",
+		"jszip": "^3.10.1",
+		"request": "^2.88.2"
+	}
+}

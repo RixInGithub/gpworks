@@ -1,0 +1,59 @@
+<!--
+	See /LICENSE.txt for GP's license.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>gpworks</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<style>
+			.shadowRealm {display: none;}
+
+			html {font-size: 11px;}
+
+			body {
+				margin: 0;
+				display: flex;
+				font: bold 0 Arial;
+				text-shadow: 0 0 CurrentColor; /* give it that crispy gp style */
+				flex-direction: column;
+				box-sizing: border-box;
+				height: 100vh;
+			}
+
+			span#status {
+				font-size: 1rem;
+				width: calc(100vw - 8px);
+				position: absolute;
+				left: 8px;
+				top: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<span class="shadowRealm" id="controls">
+			<button id="KeyboardButton">Keyboard</button>
+			<button id="BackspaceButton">Backspace</button>
+			<button id="FullscreenButton">Toggle Fullscreen</button>
+			<button id="UploadButton">Upload</button>
+			<button id="EnableMicrophoneButton">Enable Microphone</button>
+			<button id="SeeInsideButton">See Inside</button>
+			<button id="PresentButton">Present</button>
+			<button id="GoButton">Go</button>
+			<button id="StopButton">Stop</button>
+			<input type="file" id="FileUploader" multiple>
+			<div class="spinner" id="spinner"></div>
+			<div class="emscripten">
+				<progress value="0" max="100" id="progress"></progress>
+			</div>
+		</span>
+		<span id="status">Downloading...</span>
+		<div>
+			<canvas id="canvas" width="1" height="1"></canvas>
+		</div>
+		<script src="https://unpkg.com/jszip@latest/dist/jszip.js"></script>
+		<script src="/emModule.js"></script>
+		<script src="/gpSupport.js"></script>
+		<script src="/FileSaver.js"></script>
+	</body>
+</html>
