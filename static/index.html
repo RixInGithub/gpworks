@@ -8,6 +8,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<style>
 			.shadowRealm {display: none;}
+      
+      * {
+        -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -o-pixelated;
+        image-rendering: pixelated;
+      }
 
 			html {font-size: 11px;}
 
@@ -18,8 +26,10 @@
 				text-shadow: 0 0 CurrentColor; /* give it that crispy gp style */
 				flex-direction: column;
 				box-sizing: border-box;
-				height: 100vh;
+        overflow: hidden;
 			}
+      
+      html, body {height: 100%;}
 
 			span#status {
 				font-size: 1rem;

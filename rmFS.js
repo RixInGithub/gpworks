@@ -6,10 +6,3 @@ module.exports = function(a) {
 	// console.log(c.split("/* Possible FS insertion removed! */").length - 1)
 	return c
 }
-/* (async function() {
-	var req = await require("util").promisify(require("request"))
-	var js = await req("https://gpblocks.org/run/gp_js.js")
-	var wasm = await req("https://gpblocks.org/run/gp_wasm.js")
-	rmFS_IIFE(js.body)
-	rmFS_IIFE(wasm.body)
-})() */
