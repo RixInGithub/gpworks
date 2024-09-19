@@ -342,16 +342,20 @@ function handleMessage(evt) {
 	// Handle a message sent by the JavaScript postMessage() function.
 	// This is used to control button visibility or to queue a message to GP.
 	var msg = evt.data;
-	if (typeof res != "string") return
+	if (typeof msg != "string") return
 	if (msg.startsWith('showButton ')) {
 		var btn = document.getElementById(msg.substring(11));
 		if (btn) btn.style.display = 'inline';
 	} else if (msg.startsWith('hideButton ')){
 		var btn = document.getElementById(msg.substring(11));
 		if (btn) btn.style.display = 'none';
-	} else {
-		queueGPMessage(msg);
 	}
+  // gpworks additions
+  var parsed = msg.split(" ")
+  if (parsed[parsed.length - 1] == "loaded") {
+    return queueGPMessage("iframe")
+  }
+  queueGPMessage(msg)
 }
 
 window.addEventListener("message", handleMessage, false);

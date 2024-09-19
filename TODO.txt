@@ -1,0 +1,1 @@
+- replace stage with an iframe to the project (communication through handleMessage, and )

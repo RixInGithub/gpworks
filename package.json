@@ -7,5 +7,11 @@
 		"express": "^4.21.0",
 		"jszip": "^3.10.1",
 		"request": "^2.88.2"
-	}
+	},
+  "engines": {
+    "node": "16"
+  },
+  "scripts": {
+    "start": "node hosting.js"
+  }
 }
