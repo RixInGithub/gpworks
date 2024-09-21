@@ -1,3 +1,5 @@
+.gitconfig
 node_modules
 */package-lock.json
 */shrinkwrap.yaml
+*/.glitch-assets
