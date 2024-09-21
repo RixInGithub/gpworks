@@ -32,6 +32,11 @@
 		fils.forEach(function([a, b]) {
 			Module["FS_createDataFile"](a.split("/").slice(0, -1).join("/"), a.split("/").reverse()[0], b, true, true, true)
 		})
+    window.onbeforeunload = function(e) {
+      e.preventDefault()
+      e.returnValue = ""
+      return true
+    }
 	})
 	var run = document.createElement("script")
 	run.src = "./gp.js" + new URL(me.src, location.origin).search
@@ -42,9 +47,4 @@
 			Module["setStatus"] = b
 		}
 	})(window.onerror, Module["setStatus"])
-	window.onbeforeunload = function(e) {
-		e.preventDefault()
-		e.returnValue = ""
-		return true
-	}
 })(document.currentScript)

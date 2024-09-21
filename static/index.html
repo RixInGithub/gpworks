@@ -38,6 +38,16 @@
 				left: 8px;
 				top: 8px;
 			}
+      
+      body:not(.showFrm) > iframe#frm {
+        display: none;
+      }
+      
+      body > iframe#frm {
+        position: absolute;
+        border: 0;
+        z-index: -1;
+      }
 		</style>
 	</head>
 	<body>
@@ -61,6 +71,7 @@
 		<div>
 			<canvas id="canvas" width="1" height="1"></canvas>
 		</div>
+    <iframe id="frm"></iframe>
 		<script src="https://unpkg.com/jszip@latest/dist/jszip.js"></script>
 		<script src="/emModule.js"></script>
 		<script src="/gpSupport.js"></script>

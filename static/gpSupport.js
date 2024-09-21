@@ -346,15 +346,34 @@ function handleMessage(evt) {
 	if (msg.startsWith('showButton ')) {
 		var btn = document.getElementById(msg.substring(11));
 		if (btn) btn.style.display = 'inline';
+    return
 	} else if (msg.startsWith('hideButton ')){
 		var btn = document.getElementById(msg.substring(11));
 		if (btn) btn.style.display = 'none';
+    return
 	}
   // gpworks additions
-  var parsed = msg.split(" ")
+  var parsed = [...msg].join("").split(" ")
   if (parsed[parsed.length - 1] == "loaded") {
     return queueGPMessage("iframe")
   }
+  if (parsed[0] == "iframe") {
+    parsed = parsed.slice(1)
+    if (parsed[0] == "pos") {
+      var [xy, wh] = parsed.slice(1).map(function(a) {return a.split("x").map(function(b) {return b + "px"})})
+      var frm = document.getElementById("frm")
+      frm.style.top = xy[1]
+      frm.style.left = xy[0]
+      frm.style.width = wh[0]
+      frm.style.height = wh[1]
+      document.body.classList.add("showFrm")
+      console.log("resized frame to xy", xy.join("x").replaceAll("px", ""), "with", wh.join("x").replaceAll("px", ""))
+      return
+    }
+  }
+  // 
+  if ((!(Function.prototype.toString.call(setImmediate).endsWith("{ [native code] }"))) && (msg.startsWith("setImmediate"))) return
+  console.warn("Unrecognised message from GP", msg)
   queueGPMessage(msg)
 }
 

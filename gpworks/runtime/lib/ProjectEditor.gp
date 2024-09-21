@@ -517,7 +517,24 @@ method processBrowserMessages ProjectEditor {
 	   browserPostMessage 'showButton SeeInsideButton'
 	   browserPostMessage 'hideButton PresentButton'
 	}
+  if (not (contains (splitWith 'go,stop,seeInside,present' ',') msg)) {
+    parsed = (splitWith msg '')
+    if ((first parsed) == msg) {
+      if (msg == 'iframe') {
+        postToResizeFrm this (morph stage)
+      }
+    }
   }
+  }
+}
+
+method postToResizeFrm ProjectEditor st {
+  spaceChar = (stringFromCodePoints (list 32))
+  sXy = (joinStrings (map 'toString' (list (left st) (top st))) 'x')
+  h = (height (morph (global 'page')))
+  h += (0 - (top st))
+  sWh = (joinStrings (map 'toString' (list (width st) h)) 'x')
+  browserPostMessage (joinStrings (list 'iframe' 'pos' sXy sWh) spaceChar)
 }
 
 // media management
@@ -749,6 +766,7 @@ method pageResized ProjectEditor {
 	// some or all textures. this forces them to be updated from the underlying bitmap.
 	for m (allMorphs (morph page)) { costumeChanged m }
   }
+  postToResizeFrm this (morph stage)
 }
 
 method drawTopBar ProjectEditor {
@@ -852,6 +870,7 @@ method fixStageLayout ProjectEditor {
   newH = (max 1 ((height pageM) - (top viewerM)))
   scaleToFit stage newW newH
   setPosition (morph stage) (right viewerM) (bottom morph) true
+  postToResizeFrm this (morph stage)
 }
 
 method fixLibraryLayout ProjectEditor {

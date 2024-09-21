@@ -697,14 +697,25 @@ LpSRkbkP9EADMAqV6OYoZDDohz4G++ARAFGPsWx+VWYhAAAAAElFTkSuQmCC'
   return bm
 }
 
-method makeGPLogo Project {
+method makeGPLogo Project blue {
   bm = (newBitmap 100 100)
   fillRoundedRect (newVectorPen bm) (rect 1 1 99 99) 10 (gray 250) 2 (gray 0)
-  setFont 'Verdana' 66
+  initFnS = 100
+  setFont 'Verdana' initFnS
+  if (not (isClass blue 'Boolean')) {
+    blue = true
+  }
   c = (color 56 191 40)
-  drawString bm 'G' c 6 8
-  drawString bm 'P' c 55 8
-  setName bm 'GP'
+  if blue {c = (color 40 78 191)}
+  txtBmp = (newBitmap (stringWidth 'gpworks') (fontHeight))
+  drawString txtBmp 'gpworks' c 0 0
+  txtBmp = (thumbnail txtBmp 85 ((85 / (width txtBmp)) * (height txtBmp)))
+  S = initFnS
+  A = (fontHeight)
+  B = (height txtBmp)
+  setFont 'Verdana' ((S * B) / A) // thx chatgpt :pray:
+  drawString bm 'gpworks' c 0 0
+  setName bm 'gpworks'
   return bm
 }
 

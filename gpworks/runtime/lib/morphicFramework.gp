@@ -735,7 +735,7 @@ method setDevMode Page flag { devMode = flag }
 
 method enterDeveloperMode Page {
   msg = 'With great power comes great responsibility.
-Enter developer mode?'
+Are you sure?'
   if (confirm this nil msg) {
 	devMode = true
 	editor = (findProjectEditor)
